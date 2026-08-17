@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lance Macatol_ ~Junior Web Developer</title>
+<title>Your Name — Portfolio</title>
 <meta name="description" content="Junior developer portfolio">
 
 <!--
@@ -48,11 +48,27 @@
     --accent-soft: #E7EFEA;
     --line: #E1DFD6;
     --line-strong: #C9C6B9;
+    --nav-bg: rgba(247, 246, 242, 0.86);
     --sans: 'Inter', -apple-system, sans-serif;
     --serif: 'Fraunces', Georgia, serif;
     --mono: 'IBM Plex Mono', monospace;
     --max: 780px;
-    --pad: clamp(24px, 6vw, 0px);
+  }
+
+  /* EDIT: these are the dark-mode equivalents of the variables above — tweak any of
+     these hex values to adjust the dark theme without touching layout anywhere else. */
+  :root[data-theme="dark"]{
+    --bg: #15160F;
+    --bg-raised: #1D1F17;
+    --ink: #F1F0E9;
+    --ink-soft: #ADB0A2;
+    --ink-faint: #74766A;
+    --accent: #55B497;
+    --accent-ink: #0E1F1A;
+    --accent-soft: rgba(85, 180, 151, 0.16);
+    --line: #2A2C22;
+    --line-strong: #3B3E30;
+    --nav-bg: rgba(21, 22, 15, 0.86);
   }
 
   *{ box-sizing: border-box; }
@@ -70,6 +86,8 @@
     font-size: 16px;
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+    transition: background-color 0.25s ease, color 0.25s ease;
   }
 
   .wrap{
@@ -112,9 +130,10 @@
     position: sticky;
     top: 0;
     z-index: 100;
-    background: rgba(247, 246, 242, 0.86);
+    background: var(--nav-bg);
     backdrop-filter: blur(8px);
     border-bottom: 1px solid var(--line);
+    transition: background-color 0.25s ease, border-color 0.25s ease;
   }
   .nav-inner{
     max-width: var(--max);
@@ -123,7 +142,25 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 16px;
   }
+  .nav-right{ display: flex; align-items: center; gap: 14px; }
+  .theme-toggle{
+    background: none;
+    border: 1px solid var(--line-strong);
+    border-radius: 7px;
+    width: 34px; height: 34px;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--ink-soft);
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: border-color 0.2s ease, color 0.2s ease;
+  }
+  .theme-toggle:hover{ border-color: var(--accent); color: var(--accent); }
+  .theme-toggle svg{ width: 16px; height: 16px; }
+  .theme-toggle .icon-moon{ display: none; }
+  [data-theme="dark"] .theme-toggle .icon-sun{ display: none; }
+  [data-theme="dark"] .theme-toggle .icon-moon{ display: block; }
   .nav-logo{
     font-family: var(--mono);
     font-weight: 500;
@@ -224,31 +261,6 @@
   }
   .hero-role strong{ color: var(--ink); font-weight: 500; }
 
-  .code-block{
-    background: var(--accent-ink);
-    color: #DCEAE3;
-    border-radius: 10px;
-    padding: 22px 24px;
-    font-family: var(--mono);
-    font-size: 13.5px;
-    line-height: 1.75;
-    max-width: 480px;
-    white-space: pre;
-    overflow-x: auto;
-    margin-bottom: 36px;
-  }
-  .code-block .kw{ color: #7FB8A6; }
-  .code-block .str{ color: #E8C989; }
-  .code-block .cursor{
-    display: inline-block;
-    width: 7px; height: 1em;
-    background: #DCEAE3;
-    vertical-align: text-bottom;
-    margin-left: 1px;
-    animation: blink 1s step-end infinite;
-  }
-  @keyframes blink{ 50%{ opacity: 0; } }
-
   .hero-cta{ display: flex; gap: 14px; flex-wrap: wrap; }
   .btn{
     font-family: var(--sans);
@@ -289,7 +301,6 @@
   }
   .about-photo img{ width: 100%; height: 100%; object-fit: cover; }
   .about-text p{ margin: 0 0 16px; color: var(--ink-soft); max-width: 56ch; }
-  .about-text p:last-child{ margin-bottom: 0; }
   .facts{
     list-style: none;
     padding: 0; margin: 20px 0 0;
@@ -560,7 +571,13 @@
       <li><a href="#experience" class="nav-link">Experience</a></li>
       <li><a href="#contact" class="nav-link">Contact</a></li>
     </ul>
-    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu"><span></span></button>
+    <div class="nav-right">
+      <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle dark mode">
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="currentColor"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+      </button>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu"><span></span></button>
+    </div>
   </div>
 </nav>
 
@@ -576,15 +593,10 @@
       Currently looking for my first / next role.
     </p>
 
-    <!-- Signature element: this "types itself out" on load. Edit the values inside the array in the <script> below (search "typewriterLines"). -->
-    <div class="code-block reveal" aria-hidden="true">
-      <span id="typewriter"></span><span class="cursor"></span>
-    </div>
-
     <div class="hero-cta reveal">
       <a href="#work" class="btn btn-primary">View my work</a>
       <!-- EDIT: link to your resume PDF, or delete this line if you don't have one yet -->
-      <a href="https://docs.google.com/document/d/1TIiv7BtycaPa6_ZcgVzOGOti8eAnZ-5fRpgXt0ROH_o/edit?usp=sharing" class="btn btn-ghost">Download resume</a>
+      <a href="#" class="btn btn-ghost">Download resume</a>
     </div>
   </div>
 </header>
@@ -604,7 +616,7 @@
         <p>
           I'm a developer building things with
           <span class="pill-inline">Python</span><span class="pill-inline">JavaScript</span><span class="pill-inline">React</span>
-          — currently [studying X / self-taught / a recent grad in Y], Imus, PH
+          — currently [studying X / self-taught / a recent grad in Y], based in [your city].
         </p>
         <p>
           I got into programming because [genuine reason — a project, a problem you wanted to solve, a class that clicked].
@@ -612,7 +624,7 @@
         </p>
         <ul class="facts">
           <!-- EDIT: quick facts — delete any you don't want -->
-          <li><span>Based in </span>Imus, PH</li>
+          <li><span>Based in </span>Your City, Country</li>
           <li><span>Currently learning </span>Name a technology</li>
           <li><span>Open to </span>internships / junior roles / freelance</li>
         </ul>
@@ -816,7 +828,7 @@
 <footer>
   <div class="wrap" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; width:100%;">
     <!-- EDIT: name + year -->
-    <span>© 2026 Lee.</span>
+    <span>© 2026 Your Name.</span>
     <div class="social-row">
       <a href="#">GitHub</a>
       <a href="#">LinkedIn</a>
@@ -826,46 +838,14 @@
 </footer>
 
 <script>
-  // ---------- Typewriter (the hero "signature" element) ----------
-  // EDIT: change these values to describe you. Each line fully types out,
-  // pauses, deletes, then moves to the next.
-  const typewriterLines = [
-    'const developer = {\n  name: "Lance Macatol",\n  role: "Junior Developer",\n  focus: ["Python", "React"],\n  status: "offline"\n};'
-  ];
-
-  const twEl = document.getElementById('typewriter');
-  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  function typeLoop(){
-    if (reducedMotion || !twEl) { if (twEl) twEl.textContent = typewriterLines[0]; return; }
-    let lineIndex = 0, charIndex = 0, deleting = false;
-
-    function tick(){
-      const full = typewriterLines[lineIndex];
-      if (!deleting){
-        charIndex++;
-        twEl.textContent = full.slice(0, charIndex);
-        if (charIndex === full.length){
-          deleting = typewriterLines.length > 1;
-          setTimeout(tick, 2200);
-          return;
-        }
-        setTimeout(tick, 22);
-      } else {
-        charIndex--;
-        twEl.textContent = full.slice(0, charIndex);
-        if (charIndex === 0){
-          deleting = false;
-          lineIndex = (lineIndex + 1) % typewriterLines.length;
-          setTimeout(tick, 300);
-          return;
-        }
-        setTimeout(tick, 12);
-      }
-    }
-    tick();
-  }
-  typeLoop();
+  // ---------- Dark / light mode ----------
+  // EDIT: change 'light' to 'dark' here if you want the site to open in dark mode by default.
+  const themeToggle = document.getElementById('themeToggle');
+  document.documentElement.setAttribute('data-theme', 'light');
+  themeToggle.addEventListener('click', () => {
+    const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+    document.documentElement.setAttribute('data-theme', isDark ? 'light' : 'dark');
+  });
 
   // ---------- Case study toggle ----------
   document.querySelectorAll('.case-study-toggle').forEach(btn => {
