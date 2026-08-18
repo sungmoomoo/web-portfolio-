@@ -328,7 +328,7 @@
   <div class="brand">lance.macatol</div>
   <div class="topbar-right">
     <!-- Point this href at your hosted resume PDF -->
-    <a class="resume-btn" href="resume.pdf" target="_blank" rel="noopener">⬇ Resume</a>
+    <a class="resume-btn" href="resume.pdf" target="_blank" rel="noopener">Resume</a>
     <button class="switch" id="themeSwitch" aria-label="Toggle dark mode">
       <div class="thumb" id="switchThumb">☾</div>
     </button>
@@ -349,7 +349,7 @@
         <span class="pill">📍 Imus, Cavite, PH</span>
         <span class="pill">🟢 Remote</span>
         <span class="pill">💼 Open for application</span>
-        <span class="pill">🌐 lancemacatol.vercel.app</span>
+        <span class="pill">🌐 linkedin.com/lancemacatol</span>
       </div>
     </div>
   </section>
@@ -371,7 +371,7 @@
     <div class="glass" style="display:flex; flex-direction:column; align-items:center; text-align:center;">
       <div class="gh-grid" id="ghGrid"></div>
       <!-- Replace with your real GitHub username -->
-      <a class="gh-link" href="https://github.com/yourusername" target="_blank" rel="noopener">github.com/yourusername →</a>
+      <a class="gh-link" href="https://github.com/sngmoomoo" target="_blank" rel="noopener">github.com/sngmoomoo→</a>
     </div>
   </section>
 
@@ -423,7 +423,7 @@
     <button class="hobby-btn" id="openStory">
       <span style="display:flex; align-items:center; gap:14px;">
         <span class="ring"><span class="ring-inner">✨</span></span>
-        See what I'm into outside of code
+        Hobbies
       </span>
       <span class="arrow">›</span>
     </button>
@@ -443,12 +443,12 @@
       </div>
       <div class="contact-row">
         <div class="ic">🌐</div>
-        <div><div class="label">Site</div><div class="value">lancemacatol.vercel.app</div></div>
+        <div><div class="label">Site</div><div class="value">linkedin ...</div></div>
       </div>
     </div>
   </section>
 
-  <footer>© 2026 Lance Macatol. Built with care.</footer>
+  <footer>© 2026 Lance Macatol. Still learning </footer>
 </div>
 
 <!-- STORY / IG-STYLE OVERLAY -->
@@ -468,7 +468,7 @@
   </div>
 </div>
 
-<script>
+<script> 
   // ---------- dark mode ----------
   const root = document.documentElement;
   const switchBtn = document.getElementById('themeSwitch');
@@ -521,7 +521,8 @@
 
   // ---------- outside the IDE: story overlay ----------
   // Edit this array with your real hobbies/interests — one entry per "slide".
-  const hobbies = [
+  
+//  const hobbies = [
     { emoji: "🎮", title: "Gaming", text: "Add a line here about what you play and why it hooks you." },
     { emoji: "📸", title: "Photography", text: "Swap this with a real hobby — travel, gym, music, whatever fits." },
     { emoji: "☕", title: "Coffee & late-night builds", text: "This is placeholder content — replace with your own outside-the-IDE life." }
@@ -532,7 +533,7 @@
   const storyProgress = document.getElementById('storyProgress');
   let storyTimer = null;
 
-  function renderProgress() {
+//  function renderProgress() {
     storyProgress.innerHTML = hobbies.map((_, i) => {
       const cls = i < storyIndex ? 'done' : (i === storyIndex ? 'active' : '');
       return `<div class="bar ${cls}"><div class="fill"></div></div>`;
@@ -564,16 +565,18 @@
     clearTimeout(storyTimer);
   }
 
-  document.getElementById('openStory').addEventListener('click', openStory);
-  document.getElementById('closeStory').addEventListener('click', closeStory);
-  document.getElementById('navNext').addEventListener('click', () => { clearTimeout(storyTimer); nextSlide(); });
-  document.getElementById('navPrev').addEventListener('click', () => {
+//  document.getElementById('openStory').addEventListener('click', openStory);
+//  document.getElementById('closeStory').addEventListener('click', closeStory);
+//  document.getElementById('navNext').addEventListener('click', () => { clearTimeout(storyTimer); nextSlide(); });
+//  document.getElementById('navPrev').addEventListener('click', () => {
     clearTimeout(storyTimer);
     storyIndex = Math.max(0, storyIndex - 1);
     renderSlide();
     startTimer();
   });
-</script>
 
+
+</script>
+-->
 </body>
 </html>
