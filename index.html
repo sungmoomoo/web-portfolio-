@@ -522,7 +522,7 @@
   // ---------- outside the IDE: story overlay ----------
   // Edit this array with your real hobbies/interests — one entry per "slide".
   
-//  const hobbies = [
+  const hobbies = [
     { emoji: "🎮", title: "Gaming", text: "Add a line here about what you play and why it hooks you." },
     { emoji: "📸", title: "Photography", text: "Swap this with a real hobby — travel, gym, music, whatever fits." },
     { emoji: "☕", title: "Coffee & late-night builds", text: "This is placeholder content — replace with your own outside-the-IDE life." }
@@ -533,7 +533,7 @@
   const storyProgress = document.getElementById('storyProgress');
   let storyTimer = null;
 
-//  function renderProgress() {
+ function renderProgress() {
     storyProgress.innerHTML = hobbies.map((_, i) => {
       const cls = i < storyIndex ? 'done' : (i === storyIndex ? 'active' : '');
       return `<div class="bar ${cls}"><div class="fill"></div></div>`;
@@ -565,10 +565,10 @@
     clearTimeout(storyTimer);
   }
 
-//  document.getElementById('openStory').addEventListener('click', openStory);
-//  document.getElementById('closeStory').addEventListener('click', closeStory);
-//  document.getElementById('navNext').addEventListener('click', () => { clearTimeout(storyTimer); nextSlide(); });
-//  document.getElementById('navPrev').addEventListener('click', () => {
+  document.getElementById('openStory').addEventListener('click', openStory);
+  document.getElementById('closeStory').addEventListener('click', closeStory);
+  document.getElementById('navNext').addEventListener('click', () => { clearTimeout(storyTimer); nextSlide(); });
+  document.getElementById('navPrev').addEventListener('click', () => {
     clearTimeout(storyTimer);
     storyIndex = Math.max(0, storyIndex - 1);
     renderSlide();
